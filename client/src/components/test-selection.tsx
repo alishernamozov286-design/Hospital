@@ -45,13 +45,15 @@ export function TestSelection({ tests, onSubmit, patientName }: TestSelectionPro
       <div className="lg:col-span-2">
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <FlaskConical className="h-5 w-5" />
-              Tahlillarni tanlash
-            </CardTitle>
-            {patientName && (
-              <p className="text-sm text-muted-foreground">Bemor: {patientName}</p>
-            )}
+            <div>
+              <CardTitle className="flex items-center gap-2">
+                <FlaskConical className="h-5 w-5" />
+                Tahlillarni tanlash
+              </CardTitle>
+              {patientName && (
+                <p className="text-sm text-muted-foreground mt-2">Bemor: {patientName}</p>
+              )}
+            </div>
           </CardHeader>
           <CardContent className="space-y-6">
             {categories.map((category) => (

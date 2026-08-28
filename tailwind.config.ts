@@ -6,9 +6,20 @@ export default {
   theme: {
     extend: {
       borderRadius: {
-        lg: ".5625rem", /* 9px */
-        md: ".375rem", /* 6px */
-        sm: ".1875rem", /* 3px */
+        lg: ".625rem", /* 10px */
+        md: ".5rem", /* 8px */
+        sm: ".3125rem", /* 5px */
+      },
+      boxShadow: {
+        xs: "var(--shadow-xs)",
+        sm: "var(--shadow-sm)",
+        DEFAULT: "var(--shadow)",
+        md: "var(--shadow-md)",
+        lg: "var(--shadow-lg)",
+        xl: "var(--shadow-xl)",
+        "2xl": "var(--shadow-2xl)",
+        /* Brand halo for primary CTAs and the active nav pill. */
+        brand: "0 6px 20px -6px hsl(var(--brand-from) / 0.55)",
       },
       colors: {
         // Flat / base colors (regular buttons)
@@ -83,9 +94,18 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
-        serif: ["var(--font-serif)"],
-        mono: ["var(--font-mono)"],
+        sans: [
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Roboto",
+          "Helvetica Neue",
+          "Arial",
+          "sans-serif"
+        ],
+        serif: ["Georgia", "Cambria", "Times New Roman", "Times", "serif"],
+        mono: ["ui-monospace", "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", "monospace"],
       },
       keyframes: {
         "accordion-down": {

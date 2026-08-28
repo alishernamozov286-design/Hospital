@@ -1,38 +1,21 @@
-import { type User, type InsertUser } from "@shared/schema";
-import { randomUUID } from "crypto";
+import type { IStorage } from "./storage-types";
 
-// modify the interface with any CRUD methods
-// you might need
+export * from "./storage-types";
 
-export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+/**
+ * Postgres when DATABASE_URL is configured, otherwise the local JSON store so
+ * the app still runs with zero setup. Both satisfy the same IStorage contract,
+ * so nothing above this line needs to know which one is active.
+ */
+export const usingPostgres = Boolean(process.env.DATABASE_URL);
+
+async function createStorage(): Promise<IStorage> {
+  if (usingPostgres) {
+    const { PgStorage } = await import("./storage-pg");
+    return new PgStorage();
+  }
+  const { FileStorage } = await import("./storage-file");
+  return new FileStorage();
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-
-  constructor() {
-    this.users = new Map();
-  }
-
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
-  }
-
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
-  }
-
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
-  }
-}
-
-export const storage = new MemStorage();
+export const storage: IStorage = await createStorage();

@@ -47,11 +47,31 @@ export const queryClient = new QueryClient({
       queryFn: getQueryFn({ on401: "throw" }),
       refetchInterval: false,
       refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+      refetchOnMount: false,
       staleTime: Infinity,
+      gcTime: 1000 * 60 * 60 * 24, // 24 hours cache retention
       retry: false,
+      networkMode: "offlineFirst", // Use cache first, network second
     },
     mutations: {
       retry: false,
+      networkMode: "online",
     },
   },
 });
+
+/**
+ * A query key *is* the request URL, so once lists carry filters the key becomes
+ * "/api/orders?status=pending&limit=25&offset=0" and the plain key
+ * ["/api/orders"] no longer matches it. Invalidate by URL prefix instead —
+ * one call covers every page, filter and sub-resource of a collection.
+ */
+export function invalidateApi(...prefixes: string[]): Promise<void> {
+  return queryClient.invalidateQueries({
+    predicate: (query) => {
+      const url = String(query.queryKey[0] ?? "");
+      return prefixes.some((p) => url === p || url.startsWith(`${p}?`) || url.startsWith(`${p}/`));
+    },
+  });
+}

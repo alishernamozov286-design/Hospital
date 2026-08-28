@@ -1,0 +1,16 @@
+{
+  "buildCommand": "npm run vercel-build",
+  "outputDirectory": "dist/public",
+  "framework": null,
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/index.js?__path=/api/$1"
+    },
+    { "handle": "filesystem" },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}

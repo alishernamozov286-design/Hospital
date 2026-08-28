@@ -2,96 +2,92 @@
 @tailwind components;
 @tailwind utilities;
 
-/* LIGHT MODE */
+/* ================================================================= tokens
+   One brand ramp (medical cyan -> teal) over a cool neutral grey. Every
+   surface, border and shadow is derived from these, so the whole app shifts
+   together when a value here changes. */
+
 :root {
-  --button-outline: rgba(0,0,0, .10);
-  --badge-outline: rgba(0,0,0, .05);
+  --button-outline: rgba(0, 0, 0, 0.08);
+  --badge-outline: rgba(0, 0, 0, 0.05);
 
   /* Automatic computation of border around primary / danger buttons */
   --opaque-button-border-intensity: -8; /* In terms of percentages */
 
   /* Backgrounds applied on top of other backgrounds when hovered/active */
-  --elevate-1: rgba(0,0,0, .03);
-  --elevate-2: rgba(0,0,0, .08);
+  --elevate-1: rgba(0, 0, 0, 0.028);
+  --elevate-2: rgba(0, 0, 0, 0.07);
 
-  --background: 0 0% 98%;
+  --background: 210 40% 98%;
+  --foreground: 222 35% 12%;
 
-  --foreground: 220 20% 15%;
-
-  --border: 220 15% 88%;
+  --border: 214 25% 90%;
 
   --card: 0 0% 100%;
+  --card-foreground: 222 35% 12%;
+  --card-border: 214 28% 92%;
 
-  --card-foreground: 220 20% 15%;
-
-  --card-border: 220 15% 92%;
-
-  --sidebar: 220 12% 96%;
-
-  --sidebar-foreground: 220 20% 15%;
-
-  --sidebar-border: 220 15% 90%;
-
-  --sidebar-primary: 200 85% 45%;
-
+  --sidebar: 214 32% 97%;
+  --sidebar-foreground: 222 30% 16%;
+  --sidebar-border: 214 25% 90%;
+  --sidebar-primary: 196 90% 38%;
   --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 210 30% 93%;
+  --sidebar-accent-foreground: 222 30% 18%;
+  --sidebar-ring: 196 90% 42%;
 
-  --sidebar-accent: 220 12% 92%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 35% 12%;
+  --popover-border: 214 25% 90%;
 
-  --sidebar-accent-foreground: 220 20% 20%;
-
-  --sidebar-ring: 200 85% 45%;
-
-  --popover: 0 0% 99%;
-
-  --popover-foreground: 220 20% 15%;
-
-  --popover-border: 220 15% 90%;
-
-  --primary: 200 85% 45%;
-
+  --primary: 196 90% 38%;
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 220 12% 94%;
+  --secondary: 214 28% 95%;
+  --secondary-foreground: 222 30% 20%;
 
-  --secondary-foreground: 220 20% 20%;
+  --muted: 214 28% 95%;
+  --muted-foreground: 217 15% 45%;
 
-  --muted: 220 10% 95%;
+  --accent: 196 45% 95%;
+  --accent-foreground: 222 30% 20%;
 
-  --muted-foreground: 220 15% 45%;
-
-  --accent: 200 15% 94%;
-
-  --accent-foreground: 220 20% 20%;
-
-  --destructive: 0 75% 50%;
-
+  --destructive: 0 72% 48%;
   --destructive-foreground: 0 0% 100%;
 
-  --input: 220 15% 75%;
-  --ring: 200 85% 45%;
-  --chart-1: 200 85% 45%;
-  --chart-2: 160 60% 45%;
-  --chart-3: 140 70% 45%;
-  --chart-4: 35 90% 55%;
-  --chart-5: 280 65% 50%;
+  --input: 214 20% 84%;
+  --ring: 196 90% 42%;
+
+  /* Brand ramp — used by every gradient in the app. */
+  --brand-from: 196 90% 40%;
+  --brand-mid: 188 85% 40%;
+  --brand-to: 172 66% 42%;
+
+  --chart-1: 196 90% 42%;
+  --chart-2: 172 66% 40%;
+  --chart-3: 258 72% 60%;
+  --chart-4: 35 92% 52%;
+  --chart-5: 340 75% 55%;
 
   --font-sans: Inter, system-ui, -apple-system, sans-serif;
   --font-serif: Georgia, serif;
-  --font-mono: Menlo, monospace;
-  --radius: .5rem; /* 8px */
-  --shadow-2xs: 0px 2px 0px 0px hsl(220 15% 15% / 0.02);
-  --shadow-xs: 0px 2px 0px 0px hsl(220 15% 15% / 0.03);
-  --shadow-sm: 0px 2px 0px 0px hsl(220 15% 15% / 0.04), 0px 1px 2px -1px hsl(220 15% 15% / 0.06);
-  --shadow: 0px 2px 0px 0px hsl(220 15% 15% / 0.04), 0px 1px 2px -1px hsl(220 15% 15% / 0.06);
-  --shadow-md: 0px 2px 0px 0px hsl(220 15% 15% / 0.05), 0px 2px 4px -1px hsl(220 15% 15% / 0.08);
-  --shadow-lg: 0px 2px 0px 0px hsl(220 15% 15% / 0.06), 0px 4px 6px -1px hsl(220 15% 15% / 0.10);
-  --shadow-xl: 0px 2px 0px 0px hsl(220 15% 15% / 0.08), 0px 8px 10px -1px hsl(220 15% 15% / 0.12);
-  --shadow-2xl: 0px 2px 0px 0px hsl(220 15% 15% / 0.10);
+  --font-mono: "SF Mono", Menlo, monospace;
+  --radius: 0.625rem; /* 10px */
+
+  /* Soft, layered shadows — the main reason surfaces read as physical. */
+  --shadow-2xs: 0 1px 2px hsl(217 30% 20% / 0.04);
+  --shadow-xs: 0 1px 2px hsl(217 30% 20% / 0.05), 0 1px 1px hsl(217 30% 20% / 0.03);
+  --shadow-sm: 0 1px 2px hsl(217 30% 20% / 0.05), 0 2px 6px -1px hsl(217 30% 20% / 0.06);
+  --shadow: 0 2px 4px -1px hsl(217 30% 20% / 0.06), 0 6px 14px -3px hsl(217 30% 20% / 0.08);
+  --shadow-md: 0 3px 6px -2px hsl(217 30% 20% / 0.07), 0 10px 20px -4px hsl(217 30% 20% / 0.10);
+  --shadow-lg: 0 4px 8px -3px hsl(217 30% 20% / 0.08), 0 16px 32px -8px hsl(217 30% 20% / 0.14);
+  --shadow-xl: 0 8px 16px -6px hsl(217 30% 20% / 0.10), 0 28px 56px -12px hsl(217 30% 20% / 0.18);
+  --shadow-2xl: 0 32px 72px -16px hsl(217 30% 20% / 0.24);
+
   --tracking-normal: 0em;
   --spacing: 0.25rem;
 
-  /* Automatically computed borders - intensity can be controlled by the user by the --opaque-button-border-intensity setting */
+  /* Automatically computed borders — intensity controlled by --opaque-button-border-intensity */
 
   /* Fallback for older browsers */
   --sidebar-primary-border: hsl(var(--sidebar-primary));
@@ -123,86 +119,72 @@
 }
 
 .dark {
-  --button-outline: rgba(255,255,255, .10);
-  --badge-outline: rgba(255,255,255, .05);
+  --button-outline: rgba(255, 255, 255, 0.09);
+  --badge-outline: rgba(255, 255, 255, 0.05);
 
-  --opaque-button-border-intensity: 9;  /* In terms of percentages */
+  --opaque-button-border-intensity: 9; /* In terms of percentages */
 
-  /* Backgrounds applied on top of other backgrounds when hovered/active */
-  --elevate-1: rgba(255,255,255, .04);
-  --elevate-2: rgba(255,255,255, .09);
+  --elevate-1: rgba(255, 255, 255, 0.04);
+  --elevate-2: rgba(255, 255, 255, 0.08);
 
-  --background: 220 20% 10%;
+  --background: 222 30% 7%;
+  --foreground: 210 20% 96%;
 
-  --foreground: 0 0% 95%;
+  --border: 217 20% 20%;
 
-  --border: 220 15% 25%;
+  --card: 222 26% 11%;
+  --card-foreground: 210 20% 96%;
+  --card-border: 217 20% 18%;
 
-  --card: 220 18% 14%;
+  --sidebar: 222 28% 9%;
+  --sidebar-foreground: 210 20% 94%;
+  --sidebar-border: 217 20% 17%;
+  --sidebar-primary: 196 90% 48%;
+  --sidebar-primary-foreground: 222 40% 8%;
+  --sidebar-accent: 217 22% 16%;
+  --sidebar-accent-foreground: 210 20% 94%;
+  --sidebar-ring: 196 90% 52%;
 
-  --card-foreground: 0 0% 95%;
+  --popover: 222 24% 13%;
+  --popover-foreground: 210 20% 96%;
+  --popover-border: 217 20% 20%;
 
-  --card-border: 220 15% 20%;
+  --primary: 196 90% 48%;
+  --primary-foreground: 222 45% 8%;
 
-  --sidebar: 220 18% 12%;
+  --secondary: 217 20% 18%;
+  --secondary-foreground: 210 20% 92%;
 
-  --sidebar-foreground: 0 0% 95%;
+  --muted: 217 20% 16%;
+  --muted-foreground: 215 16% 62%;
 
-  --sidebar-border: 220 15% 18%;
+  --accent: 217 24% 18%;
+  --accent-foreground: 210 20% 92%;
 
-  --sidebar-primary: 200 85% 45%;
-
-  --sidebar-primary-foreground: 0 0% 100%;
-
-  --sidebar-accent: 220 15% 18%;
-
-  --sidebar-accent-foreground: 0 0% 90%;
-
-  --sidebar-ring: 200 85% 55%;
-
-  --popover: 220 18% 16%;
-
-  --popover-foreground: 0 0% 95%;
-
-  --popover-border: 220 15% 22%;
-
-  --primary: 200 85% 45%;
-
-  --primary-foreground: 0 0% 100%;
-
-  --secondary: 220 15% 20%;
-
-  --secondary-foreground: 0 0% 90%;
-
-  --muted: 220 12% 18%;
-
-  --muted-foreground: 220 15% 65%;
-
-  --accent: 200 15% 20%;
-
-  --accent-foreground: 0 0% 90%;
-
-  --destructive: 0 75% 50%;
-
+  --destructive: 0 70% 52%;
   --destructive-foreground: 0 0% 100%;
 
-  --input: 220 15% 35%;
-  --ring: 200 85% 55%;
-  --chart-1: 200 85% 65%;
-  --chart-2: 160 60% 60%;
-  --chart-3: 140 70% 60%;
-  --chart-4: 35 90% 65%;
-  --chart-5: 280 65% 65%;
+  --input: 217 20% 28%;
+  --ring: 196 90% 52%;
 
-  --shadow-2xs: 0px 2px 0px 0px hsl(0 0% 0% / 0.15);
-  --shadow-xs: 0px 2px 0px 0px hsl(0 0% 0% / 0.20);
-  --shadow-sm: 0px 2px 0px 0px hsl(0 0% 0% / 0.25), 0px 1px 2px -1px hsl(0 0% 0% / 0.30);
-  --shadow: 0px 2px 0px 0px hsl(0 0% 0% / 0.25), 0px 1px 2px -1px hsl(0 0% 0% / 0.30);
-  --shadow-md: 0px 2px 0px 0px hsl(0 0% 0% / 0.30), 0px 2px 4px -1px hsl(0 0% 0% / 0.35);
-  --shadow-lg: 0px 2px 0px 0px hsl(0 0% 0% / 0.35), 0px 4px 6px -1px hsl(0 0% 0% / 0.40);
-  --shadow-xl: 0px 2px 0px 0px hsl(0 0% 0% / 0.40), 0px 8px 10px -1px hsl(0 0% 0% / 0.45);
-  --shadow-2xl: 0px 2px 0px 0px hsl(0 0% 0% / 0.50);
+  --brand-from: 196 90% 48%;
+  --brand-mid: 188 85% 46%;
+  --brand-to: 172 66% 46%;
 
+  --chart-1: 196 90% 55%;
+  --chart-2: 172 66% 52%;
+  --chart-3: 258 80% 72%;
+  --chart-4: 35 92% 62%;
+  --chart-5: 340 80% 68%;
+
+  --shadow-2xs: 0 1px 2px hsl(0 0% 0% / 0.30);
+  --shadow-xs: 0 1px 2px hsl(0 0% 0% / 0.35);
+  --shadow-sm: 0 1px 2px hsl(0 0% 0% / 0.35), 0 2px 6px -1px hsl(0 0% 0% / 0.30);
+  --shadow: 0 2px 4px -1px hsl(0 0% 0% / 0.40), 0 6px 14px -3px hsl(0 0% 0% / 0.35);
+  --shadow-md: 0 3px 6px -2px hsl(0 0% 0% / 0.45), 0 10px 20px -4px hsl(0 0% 0% / 0.40);
+  --shadow-lg: 0 4px 8px -3px hsl(0 0% 0% / 0.50), 0 16px 32px -8px hsl(0 0% 0% / 0.45);
+  --shadow-xl: 0 8px 16px -6px hsl(0 0% 0% / 0.55), 0 28px 56px -12px hsl(0 0% 0% / 0.50);
+  --shadow-2xl: 0 32px 72px -16px hsl(0 0% 0% / 0.65);
 }
 
 @layer base {
@@ -212,6 +194,559 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Headings carry the "designed" weight: tight tracking, balanced wrapping. */
+  h1, h2, h3, h4 {
+    letter-spacing: -0.018em;
+    text-wrap: balance;
+  }
+
+  /* Tabular figures everywhere money and lab values are shown, so columns
+     of so'm amounts line up digit-for-digit. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring) / 0.65);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.2);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.22);
+    border: 3px solid transparent;
+    border-radius: 999px;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.42);
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+}
+
+@layer components {
+  /* ------------------------------------------------------------ surfaces */
+
+  /* The app's signature card: hairline border, soft shadow, lit top edge.
+     The highlight is an inset shadow rather than an overlay, so it can never
+     wash out the card's own content. */
+  .card-premium {
+    @apply relative rounded-2xl border bg-card;
+    border-color: hsl(var(--card-border));
+    box-shadow: var(--shadow-sm), inset 0 1px 0 hsl(0 0% 100% / 0.7);
+    transition: box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 220ms cubic-bezier(0.22, 1, 0.36, 1), border-color 220ms ease;
+  }
+  .dark .card-premium {
+    box-shadow: var(--shadow-sm), inset 0 1px 0 hsl(0 0% 100% / 0.05);
+  }
+
+  .card-interactive {
+    cursor: pointer;
+  }
+  .card-interactive:hover {
+    box-shadow: var(--shadow-lg), inset 0 1px 0 hsl(0 0% 100% / 0.7);
+    transform: translateY(-3px);
+    border-color: hsl(var(--primary) / 0.32);
+  }
+  .dark .card-interactive:hover {
+    box-shadow: var(--shadow-lg), inset 0 1px 0 hsl(0 0% 100% / 0.05);
+  }
+
+  /* Glass chrome for the app header — content scrolls under it. */
+  .glass-bar {
+    background: hsl(var(--background) / 0.72);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid hsl(var(--border) / 0.8);
+  }
+
+  /* A soft tinted plate — sits behind stat icons, empty states and avatars. */
+  .surface-tint {
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.12), hsl(var(--primary) / 0.03));
+  }
+
+  /* Square icon plate used in card headers and stat tiles. */
+  .icon-tile {
+    @apply flex shrink-0 items-center justify-center rounded-xl;
+    box-shadow: inset 0 0 0 1px hsl(var(--foreground) / 0.05);
+  }
+
+  /* Hairline separator that fades at both ends. */
+  .rule-soft {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--border)), transparent);
+  }
+
+  /* ------------------------------------------------------------- brand */
+
+  .brand-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--brand-from)),
+      hsl(var(--brand-mid)) 52%,
+      hsl(var(--brand-to))
+    );
+  }
+
+  .text-gradient {
+    background: linear-gradient(120deg, hsl(var(--brand-from)), hsl(var(--brand-to)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Wide colour wash behind the dashboard hero and the login screen. */
+  .aurora {
+    background:
+      radial-gradient(900px circle at 8% 10%, hsl(var(--brand-from) / 0.16), transparent 48%),
+      radial-gradient(720px circle at 92% 84%, hsl(var(--brand-to) / 0.14), transparent 46%),
+      radial-gradient(600px circle at 60% 0%, hsl(var(--chart-3) / 0.08), transparent 44%),
+      hsl(var(--background));
+  }
+  
+  /* Dark mode uchun aurora - to'qroq qilish */
+  .dark .aurora {
+    background:
+      radial-gradient(900px circle at 8% 10%, hsl(var(--brand-from) / 0.12), transparent 48%),
+      radial-gradient(720px circle at 92% 84%, hsl(var(--brand-to) / 0.10), transparent 46%),
+      radial-gradient(600px circle at 60% 0%, hsl(var(--chart-3) / 0.06), transparent 44%),
+      hsl(var(--background));
+  }
+
+  /* Hero band inside a card: deep brand gradient with a light grid on top. */
+  .hero-band {
+    position: relative;
+    overflow: hidden;
+    background: hsl(var(--background));
+    /* Gradient o'chirildi, oddiy background rangda */
+  }
+  .hero-band::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.08) 1px, transparent 1px);
+    background-size: 34px 34px;
+    pointer-events: none;
+  }
+
+  /* Dark mode uchun hero-band */
+  .dark .hero-band {
+    background: hsl(var(--background));
+  }
+  
+  .dark .hero-band::after {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.06) 1px, transparent 1px);
+  }
+
+  /* ------------------------------------------------------------- tables */
+
+  /* Applied to the wrapper of every data table. */
+  .table-premium thead tr {
+    border-bottom: 1px solid hsl(var(--border));
+    background: hsl(var(--muted) / 0.45);
+  }
+  .table-premium th {
+    @apply text-[11px] font-semibold uppercase tracking-[0.07em] text-muted-foreground;
+    height: 2.75rem;
+  }
+  .table-premium td {
+    padding-top: 0.8125rem;
+    padding-bottom: 0.8125rem;
+  }
+  .table-premium tbody tr {
+    border-bottom: 1px solid hsl(var(--border) / 0.6);
+    transition: background-color 140ms ease;
+  }
+  .table-premium tbody tr:last-child {
+    border-bottom: 0;
+  }
+  .table-premium tbody tr:hover {
+    background: hsl(var(--muted) / 0.5);
+  }
+
+  /* ------------------------------------------------------------- accents */
+
+  /* Thin vertical brand bar in front of a section title. */
+  .title-accent::before {
+    content: "";
+    display: inline-block;
+    width: 3px;
+    height: 1.1em;
+    border-radius: 999px;
+    margin-right: 0.625rem;
+    vertical-align: -0.16em;
+    background: linear-gradient(180deg, hsl(var(--brand-from)), hsl(var(--brand-to)));
+  }
+
+  /* Status dot with a matching halo. */
+  .dot-pulse {
+    position: relative;
+  }
+  .dot-pulse::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 999px;
+    background: currentColor;
+    opacity: 0.18;
+  }
+
+  /* -------------------------------------------------------------- splash */
+
+  /* The boot screen: a test tube filling under a rotating brand halo.
+     These rules dress <LabSplash>, which is the twin of the inline splash in
+     index.html — that one paints before the bundle has even downloaded, this
+     one covers the re-auth gap after a logout. Change one, change the other. */
+
+  /* The fan. All four vessels have their base pinned to one point and splay
+     out from it, 45 degrees apart, straddling vertical.
+
+     Box and origin are the fan's measured bounds, not guesses. Rotating a
+     56x84 ray (pushed 13px out at the far end of its cycle) about its own
+     bottom-centre through -67.5/-22.5/22.5/67.5 sweeps x from -100..100 and y
+     from -100..21 relative to the origin — hence 201x122 with the origin
+     horizontally centred and low in the box, since the fan opens upward. */
+  .splash-fan {
+    position: relative;
+    width: 202px;
+    height: 123px;
+  }
+
+  .splash-ray,
+  .splash-core {
+    position: absolute;
+    left: 101px;
+    top: 101px;
+  }
+
+  /* Offset by its own size so the box's bottom-centre lands exactly on the
+     origin, which is then also the transform-origin — that shared point is
+     what makes the four look like they spring from one place. */
+  .splash-ray {
+    width: 56px;
+    height: 84px;
+    margin-left: -28px;
+    margin-top: -84px;
+    transform-origin: 50% 100%;
+    /* Also set statically, not only inside the keyframes: with reduced motion
+       the animation is switched off, and without this the four would collapse
+       unrotated on top of each other. */
+    transform: rotate(var(--splash-angle));
+    animation: splash-radiate 3.6s ease-in-out infinite;
+  }
+
+  /* The origin made visible: a lit core the vessels emerge from. */
+  .splash-core {
+    width: 72px;
+    height: 72px;
+    margin: -36px 0 0 -36px;
+    border-radius: 50%;
+    background: radial-gradient(circle, hsl(var(--brand-from) / 0.55), transparent 70%);
+    animation: splash-breathe 3.4s ease-in-out infinite;
+  }
+
+  /* `ellipse`, not `circle` — the halo sits behind a wide row, and a circle
+     gradient on a wide box stops before the corners and shows its edge. */
+  .splash-halo {
+    background: radial-gradient(
+      ellipse,
+      hsl(var(--brand-from) / 0.3) 0%,
+      hsl(var(--brand-mid) / 0.14) 46%,
+      transparent 70%
+    );
+    animation: splash-breathe 3.4s ease-in-out infinite;
+  }
+
+  /* Flipping through scaleX(0) passes edge-on, so the flat drawing reads as a
+     helix turning rather than as a mirror. */
+  .splash-dna {
+    transform-origin: 32px 48px;
+    animation: splash-turn 5s ease-in-out infinite;
+  }
+
+  /* Sample rising and settling inside the vessel. */
+  .splash-liquid {
+    animation: splash-fill 3s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  }
+
+  .splash-bubble {
+    animation: splash-bubble 2.4s ease-in infinite;
+  }
+
+  .splash-bar::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 40%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, transparent, hsl(var(--brand-from)), transparent);
+    animation: splash-sweep 1.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+}
+
+@layer utilities {
+  @keyframes fade-rise {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .animate-fade-rise {
+    animation: fade-rise 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .skeleton-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .skeleton-shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, hsl(var(--foreground) / 0.07), transparent);
+    animation: shimmer 1.6s infinite;
+  }
+
+  /* ------------------------------------------------------ splash motion */
+
+  /* Each vessel slides out along its own axis and back. translateY *after* the
+     rotate is in the rotated frame, so one keyframe pushes every vessel
+     outward from the shared origin whatever direction it points. The angle
+     comes from --splash-angle, set per vessel. */
+  @keyframes splash-radiate {
+    0%,
+    100% {
+      transform: rotate(var(--splash-angle)) translateY(0);
+    }
+    50% {
+      transform: rotate(var(--splash-angle)) translateY(-13px);
+    }
+  }
+
+  @keyframes splash-breathe {
+    0%,
+    100% {
+      opacity: 0.5;
+      transform: scale(0.9);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.08);
+    }
+  }
+
+  @keyframes splash-turn {
+    0%,
+    100% {
+      transform: scaleX(1);
+    }
+    50% {
+      transform: scaleX(-1);
+    }
+  }
+
+  /* Translated in the SVG's own user units. Every vessel's liquid rect starts
+     at y=24, so this one rule puts each surface between y=54 and y=32.
+     It deliberately never empties past 54: the bubbles have to stay under the
+     surface at every point in the cycle, and a bubble hanging in the air above
+     the liquid is the one thing that would give the illusion away. */
+  @keyframes splash-fill {
+    0%,
+    100% {
+      transform: translateY(30px);
+    }
+    50% {
+      transform: translateY(8px);
+    }
+  }
+
+  /* Rises 14 units from a start of y=70..74, topping out at y=56 — still under
+     the lowest the surface ever goes. Opacity is back to 0 by then anyway. */
+  @keyframes splash-bubble {
+    0% {
+      transform: translateY(0) scale(0.5);
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.85;
+    }
+    100% {
+      transform: translateY(-14px) scale(1);
+      opacity: 0;
+    }
+  }
+
+  @keyframes splash-sweep {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(250%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-rise,
+    .skeleton-shimmer::after {
+      animation: none;
+    }
+    .card-interactive:hover {
+      transform: none;
+    }
+    /* Everything that floats, pulses or travels is stilled. The sweeping bar
+       is the one motion kept, since it is what says "still working". */
+    .splash-ray,
+    .splash-core,
+    .splash-halo,
+    .splash-liquid,
+    .splash-bubble,
+    .splash-dna {
+      animation: none;
+    }
+    .splash-liquid {
+      transform: translateY(18px);
+    }
+    .splash-bubble {
+      opacity: 0;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------- qr
+   The generator returns a standalone <svg> with its own width/height; this
+   makes it fill the box the component sizes, at any resolution. */
+.qr-code svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------------------------------------------------------------- print
+   The result blank is the only thing that should reach paper: chrome,
+   sidebar, dialog shell and buttons all disappear. */
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+
+  body {
+    background: #fff !important;
+  }
+
+  .no-print,
+  [data-sidebar="sidebar"],
+  [data-radix-popper-content-wrapper] {
+    display: none !important;
+  }
+
+  /* Lift the printable blank out of the dialog's fixed overlay so it
+     paginates as a normal document instead of a clipped viewport box. */
+  .print-surface {
+    position: static !important;
+    inset: auto !important;
+    transform: none !important;
+    max-height: none !important;
+    max-width: none !important;
+    width: 100% !important;
+    overflow: visible !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .print-avoid-break {
+    break-inside: avoid;
+  }
+
+  /* The QR code is the one element on the page a machine has to read, so it
+     gets treated as a barcode rather than as an image:
+
+     - print-color-adjust stops the browser's "economy mode" from rendering
+       the modules as grey, which is the single most common reason a printed
+       code will not scan;
+     - the white background and its padding are the quiet zone — without it a
+       scanner cannot find the symbol's edge against the paper;
+     - break-inside keeps a page break from slicing the code in half. */
+  .qr-print {
+    break-inside: avoid;
+    background: #fff !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .qr-print svg rect[fill="#ffffff"],
+  .qr-print svg path {
+    shape-rendering: crispEdges;
+  }
+}
+
+/* ------------------------------------------------------------ tube label
+   A sample label is not a document: it goes to a small roll-fed label
+   printer, so it needs its own page size rather than A4 with the label
+   marooned in the top corner. The rule is scoped to a body class the label
+   dialog sets while it is open, because @page cannot be scoped by selector. */
+@media print {
+  body.printing-label {
+    /* 58 x 30 mm is the common thermal-label stock; the margin is the print
+       head's own dead zone, not decoration. */
+    @page {
+      size: 58mm 30mm;
+      margin: 2mm;
+    }
+  }
+
+  body.printing-label .label-surface {
+    width: 100% !important;
+    height: auto !important;
+    padding: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    color: #000 !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  /* The barcode digits are what a human falls back to when the scan fails,
+     so they must stay crisp and never be reflowed onto a second label. */
+  body.printing-label .label-surface * {
+    break-inside: avoid;
   }
 }
 

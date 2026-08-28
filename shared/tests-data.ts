@@ -170,3 +170,151 @@ export const defaultTests = [
   { id: '118', name: 'TTG (IXLA)', price: 80000, category: 'IXLA' },
   { id: '119', name: 'At-TPO (IXLA)', price: 80000, category: 'IXLA' },
 ];
+
+/**
+ * O'lchov birligi va me'yoriy (referens) oraliq — tahlil id'si bo'yicha.
+ * Kattalar uchun standart qiymatlar. Sifatiy testlar uchun "Manfiy".
+ * Bu yerda yo'q tahlillar uchun laborant qiymatni qo'lda kiritadi;
+ * admin Sozlamalar bo'limidan istalganini tahrirlashi mumkin.
+ */
+export const testReferences: Record<string, { unit?: string; referenceRange: string }> = {
+  '3':  { unit: 'g/l',      referenceRange: 'Erkak: 130-170, Ayol: 120-150' },
+  '4':  { unit: 'mm/soat',  referenceRange: 'Erkak: 2-10, Ayol: 2-15' },
+  '5':  { unit: 'daqiqa',   referenceRange: '5-10' },
+  '15': { unit: 'g/l',      referenceRange: '64-83' },
+  '16': { unit: 'g/l',      referenceRange: '35-52' },
+  '17': { unit: 'U/l',      referenceRange: '< 41' },
+  '18': { unit: 'U/l',      referenceRange: '< 40' },
+  '19': { unit: 'mkmol/l',  referenceRange: 'Umumiy: 3.4-20.5' },
+  '20': { unit: 'U/l',      referenceRange: '40-150' },
+  '21': { unit: 'U/l',      referenceRange: '28-100' },
+  '22': { unit: 'mmol/l',   referenceRange: '3.9-6.1' },
+  '23': { unit: 'mmol/l',   referenceRange: '2.5-8.3' },
+  '24': { unit: 'mkmol/l',  referenceRange: 'Erkak: 62-106, Ayol: 44-80' },
+  '25': { unit: 'U/l',      referenceRange: '< 25' },
+  '26': { unit: 'mmol/l',   referenceRange: '< 5.2' },
+  '27': { unit: 'mmol/l',   referenceRange: '< 1.7' },
+  '28': { unit: 'mmol/l',   referenceRange: 'Erkak: > 1.0, Ayol: > 1.2' },
+  '29': { unit: 'mmol/l',   referenceRange: '< 3.0' },
+  '30': { unit: 'mkmol/l',  referenceRange: 'Erkak: 202-416, Ayol: 143-339' },
+  '32': { unit: 'mmol/l',   referenceRange: '3.5-5.1' },
+  '33': { unit: 'mmol/l',   referenceRange: '2.15-2.55' },
+  '34': { unit: 'mmol/l',   referenceRange: '98-107' },
+  '35': { unit: 'mmol/l',   referenceRange: '136-145' },
+  '36': { unit: 'mmol/l',   referenceRange: '0.66-1.07' },
+  '37': { unit: 'U/l',      referenceRange: '125-220' },
+  '38': { unit: 'mkmol/l',  referenceRange: 'Erkak: 11-28, Ayol: 7-26' },
+  '39': {                   referenceRange: 'Manfiy' },
+  '40': {                   referenceRange: 'Manfiy' },
+  '41': {                   referenceRange: 'Manfiy' },
+  '42': { unit: 'ME/ml',    referenceRange: '< 14' },
+  '43': { unit: 'ME/ml',    referenceRange: '< 200' },
+  '44': { unit: '%',        referenceRange: '4.0-6.0' },
+  '45': { unit: '%',        referenceRange: '70-130' },
+  '46': { unit: 'sek',      referenceRange: '25-35' },
+  '47': { unit: 'g/l',      referenceRange: '2.0-4.0' },
+  '49': { unit: 'nmol/l',   referenceRange: '1.3-2.7' },
+  '50': { unit: 'nmol/l',   referenceRange: '66-181' },
+  '51': { unit: 'mkME/ml',  referenceRange: '0.4-4.0' },
+  '52': { unit: 'pmol/l',   referenceRange: '3.1-6.8' },
+  '53': { unit: 'pmol/l',   referenceRange: '12-22' },
+  '54': { unit: 'ME/ml',    referenceRange: '< 34' },
+  '55': { unit: 'ME/ml',    referenceRange: '< 115' },
+  '58': { unit: 'ng/ml',    referenceRange: 'Erkak: 2.6-13.1, Ayol: 3.3-26.7' },
+  '60': { unit: 'mME/ml',   referenceRange: 'Homilador emas: < 5' },
+  '62': { unit: 'nmol/l',   referenceRange: 'Erkak: 8.6-29, Ayol: 0.3-2.4' },
+  '66': { unit: 'nmol/l',   referenceRange: 'Ertalab: 171-536' },
+  '67': { unit: 'mkME/ml',  referenceRange: '2.6-24.9' },
+  '70': {                   referenceRange: 'Manfiy' },
+  '71': {                   referenceRange: 'Manfiy' },
+  '84': { unit: 'U/ml',     referenceRange: '< 35' },
+  '85': { unit: 'U/ml',     referenceRange: '< 31.3' },
+  '86': { unit: 'U/ml',     referenceRange: '< 37' },
+  '87': { unit: 'ng/ml',    referenceRange: '< 5' },
+  '88': { unit: 'ME/ml',    referenceRange: '< 10' },
+  '89': { unit: 'ng/ml',    referenceRange: '< 4.0' },
+  '90': { unit: 'mg/l',     referenceRange: '< 5' },
+  '91': { unit: 'ng/ml',    referenceRange: '< 0.5' },
+  '92': { unit: 'pg/ml',    referenceRange: '< 7' },
+  '93': { unit: 'ng/ml',    referenceRange: 'Erkak: 30-400, Ayol: 13-150' },
+  '96': { unit: 'ng/ml',    referenceRange: '< 500' },
+  '97': { unit: 'ng/ml',    referenceRange: '30-100' },
+  '98': {                   referenceRange: 'Manfiy' },
+  '99': {                   referenceRange: 'Manfiy' },
+  '101':{                   referenceRange: 'Manfiy' },
+  '102':{                   referenceRange: 'Manfiy' },
+  '103':{                   referenceRange: 'Manfiy' },
+  '104':{                   referenceRange: 'Manfiy' },
+  '105':{                   referenceRange: 'Manfiy' },
+  '106':{                   referenceRange: 'Manfiy' },
+  '107':{ unit: 'ng/ml',    referenceRange: '< 0.04' },
+  '114':{ unit: 'nmol/l',   referenceRange: '1.3-2.7' },
+  '115':{ unit: 'nmol/l',   referenceRange: '66-181' },
+  '116':{ unit: 'pmol/l',   referenceRange: '3.1-6.8' },
+  '117':{ unit: 'pmol/l',   referenceRange: '12-22' },
+  '118':{ unit: 'mkME/ml',  referenceRange: '0.4-4.0' },
+  '119':{ unit: 'ME/ml',    referenceRange: '< 34' },
+
+  // --- Ko'p ko'rsatkichli panellar -------------------------------------
+  // Bitta son emas, blankaga bir nechta ko'rsatkich yoziladi. Soxta yagona
+  // oraliq berishdan ko'ra, tabiatini ochiq yozgan to'g'riroq.
+  '1':  { referenceRange: "Ko'rsatkichlar bo'yicha" },
+  '2':  { referenceRange: "Ko'rsatkichlar bo'yicha" },
+  '6':  { referenceRange: "Ko'rsatkichlar bo'yicha" },
+  '12': { referenceRange: "Ko'rsatkichlar bo'yicha" },
+
+  // --- Umumiy klinika ---------------------------------------------------
+  '7':  { unit: '1 ml',     referenceRange: 'Leyk. < 2000, Erit. < 1000' },
+  '8':  { referenceRange: 'Manfiy' },
+  '9':  { referenceRange: 'Manfiy' },
+  '10': { referenceRange: 'Manfiy' },
+  '11': { unit: 'g/l',      referenceRange: '< 0.033' },
+
+  // --- Kaprologiya ------------------------------------------------------
+  '13': { referenceRange: 'Topilmadi' },
+  '14': { referenceRange: 'Manfiy' },
+
+  // --- Biokimyo / koagulogramma ----------------------------------------
+  '31': { unit: 'mmol/sut', referenceRange: '1.48-4.43' },
+  '48': { referenceRange: 'IV-V daraja' },
+
+  // --- Reproduktiv gormonlar -------------------------------------------
+  // Ayol qiymatlari sikl fazasiga bog'liq; bu yerda eng ko'p ishlatiladigan
+  // follikulyar/lyuteal faza berilgan, laborant zarur bo'lsa tuzatadi.
+  '56': { unit: 'mME/ml',   referenceRange: 'Erkak: 1.5-12.4, Ayol: 3.5-12.5' },
+  '57': { unit: 'mME/ml',   referenceRange: 'Erkak: 1.7-8.6, Ayol: 2.4-12.6' },
+  '59': { unit: 'pg/ml',    referenceRange: 'Erkak: 7.6-42.6, Ayol: 12.5-166' },
+  '61': { unit: 'ng/ml',    referenceRange: '1.0-10.6' },
+  '63': { unit: 'pg/ml',    referenceRange: 'Erkak: 8.8-27.0, Ayol: 0.29-3.18' },
+  '64': { unit: 'ng/ml',    referenceRange: 'Erkak: 0.2-1.4, Ayol: 1.7-27.0' },
+  '68': { unit: 'ng/ml',    referenceRange: '1.1-4.4' },
+
+  // --- Immunologiya -----------------------------------------------------
+  '65': { unit: 'ME/ml',    referenceRange: '< 100' },
+  '94': { unit: 'ME/ml',    referenceRange: '< 17' },
+  '95': { referenceRange: 'Manfiy (< 1:80)' },
+
+  // --- Serologiya: sifatiy testlar --------------------------------------
+  '69': { referenceRange: 'Manfiy' },
+  '72': { referenceRange: 'Manfiy' },
+  '73': { referenceRange: 'Manfiy' },
+  '74': { referenceRange: 'Manfiy' },
+  '75': { referenceRange: 'Manfiy' },
+  '76': { referenceRange: 'Manfiy' },
+  '77': { referenceRange: 'Manfiy' },
+  '78': { referenceRange: 'Manfiy' },
+  '79': { referenceRange: 'Manfiy' },
+  '80': { referenceRange: 'Manfiy' },
+  '81': { referenceRange: 'Manfiy' },
+  '82': { referenceRange: 'Manfiy' },
+  '83': { referenceRange: 'Manfiy' },
+  '100':{ referenceRange: 'Manfiy' },
+
+  // --- PTsR -------------------------------------------------------------
+  '108':{ referenceRange: 'Aniqlanmadi' },
+  '110':{ referenceRange: 'Aniqlanmadi' },
+  '112':{ referenceRange: 'Aniqlanmadi' },
+  '109':{ unit: 'ME/ml',    referenceRange: 'Aniqlanmadi' },
+  '111':{ unit: 'ME/ml',    referenceRange: 'Aniqlanmadi' },
+  '113':{ unit: 'ME/ml',    referenceRange: 'Aniqlanmadi' },
+};
